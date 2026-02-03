@@ -28,7 +28,7 @@ import {
   User,
   Briefcase,
 } from "lucide-react";
-import { motion, Variants } from "framer-motion"; // Removed AnimatePresence
+import { motion, Variants } from "framer-motion";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -59,7 +59,11 @@ export default function Page() {
 
   return (
     <main
-      className="min-h-screen bg-background font-sans text-foreground selection:bg-foreground selection:text-background p-4 md:p-12"
+      /* FIX 1: h-screen + overflow-y-auto makes this container handle the scrolling 
+         instead of the window. This isolates the layout calculation. */
+      className="h-screen w-full bg-background font-sans text-foreground selection:bg-foreground selection:text-background p-4 md:p-12 overflow-y-auto"
+      /* FIX 2: scrollbar-gutter: stable reserves the width of the scrollbar 
+         at all times so the content doesn't jump when the bar appears/disappears. */
       style={{ scrollbarGutter: "stable" }}
     >
       <div className="mx-auto max-w-7xl">
@@ -67,7 +71,7 @@ export default function Page() {
           {/* =================================================
               LEFT PARTITION: SIDEBAR
              ================================================= */}
-          <section className="flex flex-col gap-6 lg:sticky lg:top-12 lg:h-fit">
+          <section className="flex flex-col gap-6 lg:sticky lg:top-0 lg:h-fit">
             <div className="rounded-2xl border bg-card p-6 shadow-sm relative">
               <div className="absolute top-4 right-4">
                 <DropdownMenu>
@@ -175,14 +179,11 @@ export default function Page() {
 
           {/* =================================================
               RIGHT PARTITION: CONTENT
-              1. Removed AnimatePresence (stops the height collapse).
-              2. min-h-screen ensures there is always enough scroll area.
              ================================================= */}
-          <section className="min-h-screen">
+          <section>
             {view === "work" ? (
               <motion.div
                 key="work-view"
-                /* FIX: No 'exit' animation. Content swaps instantly. */
                 initial="hidden"
                 animate="visible"
                 variants={containerVariants}
@@ -275,7 +276,6 @@ export default function Page() {
             ) : (
               <motion.div
                 key="life-view"
-                /* FIX: No 'exit' animation. Content swaps instantly. */
                 initial="hidden"
                 animate="visible"
                 variants={containerVariants}
@@ -292,7 +292,8 @@ export default function Page() {
                       </CardHeader>
                       <CardContent className="text-sm text-muted-foreground leading-relaxed">
                         Street photography enthusiast capturing urban life.
-                        Recently explored Jodhpur and Jaisalmer.
+                        Recently explored Jodhpur and Jaisalmer with a Nikon
+                        D3300.
                       </CardContent>
                     </Card>
                   </motion.div>
