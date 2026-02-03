@@ -17,7 +17,7 @@ export const RESUME_DATA = {
     social: [
       {
         name: "LinkedIn",
-        url: "https://www.linkedin.com/",
+        url: "https://in.linkedin.com/in/tishy-patel",
         icon: Globe,
       },
     ],
@@ -70,7 +70,7 @@ export const RESUME_DATA = {
   ],
   skills: {
     technical: [
-      "Angular (Expert)",
+      "Angular",
       "React / Next.js",
       "NestJS / Node.js",
       "PHP (Legacy 5.6+)",
@@ -105,6 +105,33 @@ export const RESUME_DATA = {
       description:
         "A real-time financial dashboard with secure wallet connectivity. Implemented complex state management for live currency updates and secure transaction signing.",
       link: { label: "Live Demo", href: "#" },
+    },
+    {
+      title: "DevExchange Platform",
+      techStack: ["Next.js 14", "FastAPI", "WebSockets", "SQLModel"],
+      description:
+        "A real-time engineering collaboration hub. Developed a custom ticketing system with Role-Based Access Control (RBAC) and live WebSocket-driven discussion threads to streamline internal knowledge sharing.",
+      link: {
+        label: "GitHub Repository",
+        href: "https://github.com/tishypatel/devexchange",
+      },
+    },
+    {
+      title: "SaaS-Management-Platform",
+      techStack: [
+        "Node.js",
+        "Express.js",
+        "MongoDB",
+        "Mongoose",
+        "JWT Authentication",
+        "REST API",
+      ],
+      description:
+        "A multi-tenant, production-ready SaaS backend for task management. Implemented secure JWT-based authentication, user-level data isolation, and modular REST APIs for managing tasks. Designed with scalable architecture, centralized middleware, and strong security practices.",
+      link: {
+        label: "GitHub Repository",
+        href: "https://github.com/tishypatel/SaaS-Management-Platform",
+      },
     },
   ],
 } as const;
